@@ -95,6 +95,12 @@ async function run() {
     const allCraftItems = await cursor.toArray();
     res.send(allCraftItems);
   })
+  app.get('/allCraftItems/:id', async(req, res)=>{
+    const id = req.params.id;
+    const query = {_id: new ObjectId(id)}
+    const singleItem =await itemCollection.findOne(query)
+    res.send(singleItem);
+    })
 
 
 
