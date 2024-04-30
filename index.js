@@ -101,6 +101,15 @@ async function run() {
     const singleItem =await itemCollection.findOne(query)
     res.send(singleItem);
     })
+// Define route to fetch craft subcategories
+
+const craftSubcategories = client.db('artCraftCtore').collection('craftSubcategories');
+
+app.get('/craftSubcategories',async(req,res)=>{
+  const cursor = craftSubcategories.find();
+  const result =await cursor.toArray();
+  res.send(result);
+})
 
 
 
