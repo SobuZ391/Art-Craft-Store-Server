@@ -62,6 +62,27 @@ async function run() {
       res.send(result);
     }
   })
+  app.put('/myCraftItem/:id', async (req, res) => {
+    const id = req.params.id;
+    const filter = { _id: new ObjectId(id) };
+    const options = { upsert: true };
+    const updatedCraftItem = req.body;
+    const craftItem = {
+      $set: {
+        subcategory: updatedCraftItem.subcategory,
+        image: updatedCraftItem.image,
+        itemName: updatedCraftItem.itemName,
+        shortDescription: updatedCraftItem.shortDescription,
+        price: updatedCraftItem.price,
+        rating: updatedCraftItem.rating,
+        customization: updatedCraftItem.customization,
+        stockStatus: updatedCraftItem.stockStatus
+      }
+    };
+    const result = await itemCollection.updateOne(filter, craftItem, options);
+    res.send(result)
+  })  
+
 
 
 
