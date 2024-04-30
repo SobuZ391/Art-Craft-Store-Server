@@ -42,6 +42,7 @@ async function run() {
       console.log(result);
       res.send(result)
   })
+  //my craft items server
   app.get('/myCraftItem/:id',async(req,res)=>{
     const id =req.params.id;
     const query ={_id:new ObjectId(id)}
@@ -89,6 +90,7 @@ async function run() {
     const result =await itemCollection.deleteOne(query);
     res.send(result);
   })
+
   //all craft items
   app.get('/allCraftItems',async(req,res)=>{
     const cursor = itemCollection.find();
@@ -101,7 +103,7 @@ async function run() {
     const singleItem =await itemCollection.findOne(query)
     res.send(singleItem);
     })
-// Define route to fetch craft subcategories
+
 
 const craftSubcategories = client.db('artCraftCtore').collection('craftSubcategories');
 
@@ -113,11 +115,11 @@ app.get('/craftSubcategories',async(req,res)=>{
 
 
 
-    // Send a ping to confirm a successful connection
+
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
-    // Ensures that the client will close when you finish/error
+ 
     // await client.close();
   }
 }
