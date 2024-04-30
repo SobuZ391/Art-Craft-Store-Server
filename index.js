@@ -48,6 +48,20 @@ async function run() {
     const result =await itemCollection.findOne(query);
     res.send(result);
   })
+  app.get('/myCraftItem',async(req,res)=>{
+    const email=req.body.email;
+    if(email){
+      const query = {email:email};
+      console.log(query);
+      const cursor =itemCollection.findOneAndDelete(query);
+      const result =await cursor.toArray();
+      res.send(result);
+    }else{
+      const cursor = itemCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    }
+  })
 
 
 
